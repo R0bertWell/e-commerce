@@ -1,3 +1,4 @@
+from cart.forms import CartAddProductForm
 from typing import List
 from unicodedata import category
 from django.shortcuts import get_object_or_404
@@ -9,6 +10,7 @@ from .models import Category, Product
 
 class ProductDetailView(DetailView):
     queryset = Product.available.all()
+    extra_context = {'form': CartAddProductForm()}
 
 
 class ProductListView(ListView):
