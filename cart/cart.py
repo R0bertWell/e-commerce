@@ -1,4 +1,6 @@
 from decimal import Decimal
+
+from django.conf import settings
 from cart.forms import CartAddProductForm
 from products.models import Product
 import copy
@@ -52,6 +54,10 @@ class Cart:
             del self.cart[product_id]
             self.save()
  
+    def clear(self):
+        del self.session[settings.CART_SESSION_ID]
+        self.save()
+
     def save(self):
         self.session.modified = True
 
